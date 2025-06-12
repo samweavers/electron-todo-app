@@ -2,37 +2,16 @@
 <html>
   <head>
     <title>Simple To-Do List</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-      }
-      input {
-        width: 80%;
-        padding: 5px;
-        margin-right: 10px;
-      }
-      button {
-        padding: 5px 10px;
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-      }
-      li {
-        margin: 5px 0;
-      }
-      .completed {
-        text-decoration: line-through;
-        color: gray;
-      }
-    </style>
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
     <h1>Simple To-Do List</h1>
-    <input type="text" id="taskInput" placeholder="Enter a task" />
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
+    <section class="todo-inputs">
+      <input type="text" id="taskTitleInput" placeholder="Name your task" />
+      <input type="textarea" id="taskDescInput" placeholder="Description" />
+      <button class="btn" onclick="addTask()">Add Task</button>
+    </section>
+    <article class="task-list" id="taskList"></article>
     <script src="renderer.js"></script>
   </body>
 </html>

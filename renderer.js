@@ -1,36 +1,43 @@
 let tasks = []
 
-// Load tasks on startup
-window.electronAPI.loadTasks().then((loadedTasks) => {
-  tasks = loadedTasks
-  updateTaskList()
-})
-
 function addTask() {
-  const input = document.getElementById('taskInput')
-  const taskText = input.value.trim()
-  if (taskText) {
-    tasks.push({ text: taskText, completed: false })
-    input.value = ''
+  const titleInput = document.getElementById('taskTitleInput')
+  const descInput = document.getElementById('taskDescInput')
+  const taskTitle = titleInput.value.trim()
+  const taskDesc = descInput.value.trim()
+  if (taskTitle) {
+    tasks.push({ text: taskTitle, description: taskDesc, completed: false })
+    titleInput.value = ''
+    descInput.value = ''
     updateTaskList()
-    window.electronAPI.saveTasks(tasks)
   }
 }
 
 function toggleTask(index) {
   tasks[index].completed = !tasks[index].completed
   updateTaskList()
-  window.electronAPI.saveTasks(tasks)
 }
 
 function updateTaskList() {
   const taskList = document.getElementById('taskList')
   taskList.innerHTML = ''
   tasks.forEach((task, index) => {
-    const li = document.createElement('li')
-    li.textContent = task.text
-    if (task.completed) li.classList.add('completed')
-    li.onclick = () => toggleTask(index)
-    taskList.appendChild(li)
+    const div = document.createElement('div')
+    const titleEl = document.createElement('span')
+    const descEl = document.createElement('span')
+
+    titleEl.textContent = task.text
+    descEl.textContent = task.description
+
+    div.classList.add('todo-item')
+    titleEl.classList.add('todo-title')
+    descEl.classList.add('todo-desc')
+
+    div.appendChild(titleEl)
+    div.appendChild(descEl)
+
+    if (task.completed) div.classList.add('completed')
+    div.onclick = () => toggleTask(index)
+    taskList.appendChild(div)
   })
 }
