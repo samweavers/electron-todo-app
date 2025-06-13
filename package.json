@@ -4,13 +4,15 @@
   "description": "A simple to-do list app using Electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager . --overwrite --platform=darwin --arch=x64 --out=dist"
   },
   "author": "Your Name",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "electron": "^30.0.0",
+    "electron": "^30.5.1",
+    "electron-packager": "^17.1.2",
     "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8"
   },
