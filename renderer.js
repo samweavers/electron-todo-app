@@ -21,11 +21,12 @@ function updateTaskList() {
   taskList.innerHTML = ''
   tasks.forEach((task, index) => {
     // initialize elements
-    const div = document.createElement('div')
+    const section = document.createElement('section')
     const titleEl = document.createElement('span')
     const descEl = document.createElement('span')
     const taskComplete = document.createElement('button')
     const taskDelete = document.createElement('button')
+    const controlBtns = document.createElement('div')
 
     // text contents
     titleEl.textContent = task.text
@@ -34,21 +35,27 @@ function updateTaskList() {
     taskDelete.textContent = 'Remove'
 
     // classes
-    div.classList.add('todo-item')
+    section.classList.add('todo-item')
     titleEl.classList.add('todo-title')
     descEl.classList.add('todo-desc')
     taskComplete.classList.add('btn', 'todo-btn-complete')
     taskDelete.classList.add('btn', 'todo-btn-delete')
+    controlBtns.classList.add('todo-control-buttons')
 
-    if (task.completed) div.classList.add('completed')
+    // attributes
+    titleEl.contentEditable = 'true'
+    descEl.contentEditable = 'true'
+
+    if (task.completed) section.classList.add('completed')
     taskComplete.onclick = () => toggleTask(index)
     taskDelete.onclick = () => removeTask(index)
 
-    div.appendChild(titleEl)
-    div.appendChild(descEl)
-    div.appendChild(taskComplete)
-    div.appendChild(taskDelete)
-    taskList.appendChild(div)
+    section.appendChild(titleEl)
+    section.appendChild(descEl)
+    section.appendChild(controlBtns)
+    controlBtns.appendChild(taskComplete)
+    controlBtns.appendChild(taskDelete)
+    taskList.appendChild(section)
   })
 }
 
@@ -71,17 +78,6 @@ function removeTask(index) {
   window.electronAPI.saveTasks(tasks) // Save after adding
   updateTaskList()
 }
-
-// function removeTask(taskTitleToRemove) {
-//   // Find the index of the task with the given title
-//   const index = tasks.findIndex((task) => task.text === taskTitleToRemove)
-
-//   if (index !== -1) {
-//     tasks.splice(index, 1) // Remove the task from the array
-//     window.electronAPI.saveTasks(tasks) // Save updated tasks
-//     updateTaskList() // Refresh the UI
-//   }
-// }
 
 // Run init when DOM is ready
 window.addEventListener('DOMContentLoaded', init)

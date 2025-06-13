@@ -5,7 +5,10 @@
 }
 
 :root {
-  --input-height: 2rem;
+  --input-height: 3rem;
+  --color-pink-light: #ff92d0;
+  --color-pink: #ff79c6;
+  --color-pink-dark: #e055a1;
   --color-green-200: #bbf7d0;
   --color-green-600: #16a34a;
   --color-green-700: #15803d;
@@ -13,25 +16,39 @@
   --color-green-900: #14532d;
   --color-red-600: #dc2626;
   --color-red-700: #b91c1c;
+  font-size: 1.25rem;
+  --rounding-sm: 0.25rem;
+  --rounding: 0.375rem;
+  --rounding-md: 0.5rem;
+  --rounding-lg: 0.75rem;
 }
 
 body {
   margin: 0;
   padding: 3rem;
   font-family: system-ui, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #282a36;
   color: #333;
   line-height: 1.5;
   display: grid;
-  gap: 1rem;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 body * {
   font-family: system-ui, sans-serif;
 }
 
+body *:focus,
+body *:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-pink-light);
+  outline: 0;
+}
+
 input,
 textarea {
+  font-size: 1rem;
   width: 100%;
   height: 100%;
   min-height: var(--input-height);
@@ -40,30 +57,39 @@ textarea {
   padding-top: 0.5rem; /* py-2 */
   padding-bottom: 0.5rem;
   border: 1px solid #e5e7eb;
-  border-radius: 0.375rem; /* rounded-md */
+  border-radius: var(--rounding);
   outline: none;
 }
 
 textarea {
-  min-height: calc(var(--input-height) * 2);
+  min-height: calc(var(--input-height) * 4);
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* focus:ring-2 focus:ring-blue-500 */
+  box-shadow: 0 0 0 2px var(--color-pink-light);
 }
 
 textarea {
   height: 2rem;
 }
 
+h1 {
+  color: white;
+  text-align: center;
+  font-weight: 900;
+  font-size: calc(100vw / 25);
+}
+
 .btn {
   font-size: 0.75rem; /* text-xl */
+  font-weight: 800;
   padding: 0.5rem 1rem;
-  background-color: #3b82f6; /* bg-blue-500 */
+  text-transform: uppercase;
+  background-color: var(--color-pink);
   color: white; /* text-white */
-  border-radius: 0.375rem; /* rounded-md */
+  border-radius: var(--rounding-sm);
   outline: none;
   border: none;
   cursor: pointer;
@@ -71,14 +97,19 @@ textarea {
 }
 
 .btn:hover {
-  background-color: #2563eb; /* hover:bg-blue-600 */
+  background-color: var(--color-pink-dark);
 }
 
-.btn:focus {
+.btn:focus,
+.btn:focus-visible {
   outline: none; /* focus:outline-none */
+  box-shadow: none;
 }
 
 .todo-title {
+  min-height: var(--input-height);
+  padding: 0;
+  border: none;
   font-size: 1.75rem;
   font-weight: 800;
   display: block;
@@ -86,12 +117,15 @@ textarea {
 .todo-desc {
   font-size: 1rem;
   display: block;
+  padding: 1rem;
+  border-radius: var(--rounding-sm);
+  background-color: #f9f9f9;
 }
 .todo-item {
   padding: 1rem;
   background-color: white;
   border: 1px solid #e5e7eb;
-  border-radius: 0.375rem; /* rounded-md */
+  border-radius: var(--rounding-sm);
   display: grid;
   gap: 0.25rem;
   position: relative;
@@ -132,4 +166,10 @@ textarea {
 }
 .btn.todo-btn-complete:hover {
   background-color: var(--color-green-700);
+}
+
+.todo-control-buttons {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: end;
 }

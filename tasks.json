@@ -1,7 +1,12 @@
 [
   {
-    "text": "test",
-    "description": "test",
-    "completed": true
+    "text": "HTH - Add alternative logo formats to repo",
+    "description": "- svg\n- png (150w, 300w, 512w)\n- Square & landscape",
+    "completed": false
+  },
+  {
+    "text": "KSITE - Update PageHero.svelte for Video Component",
+    "description": "Reference Come Back Clean\n\n```\n        {#if hero === 'leadform'}\n          <LeadForm />\n        {:else if $page.hero_video}\n          <lite-youtube posterloading=\"eager\" videoid={$page.hero_video}\n          ></lite-youtube>\n        {:else}\n          <Image source={$page.hero_image ?? $page.image} loading=\"eager\" />\n        {/if}\n```",
+    "completed": false
   }
 ]
