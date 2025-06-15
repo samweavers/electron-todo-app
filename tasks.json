@@ -1,12 +1,22 @@
 [
   {
-    "text": "HTH - Add alternative logo formats to repo",
-    "description": "- svg\n- png (150w, 300w, 512w)\n- Square & landscape",
-    "completed": false
+    "title": "Add \"completedAt\" date",
+    "description": "",
+    "addedDate": "6/15/2025, 9:34:17 AM",
+    "completed": true,
+    "completedDate": "2025-06-15T16:42:50.089Z"
   },
   {
-    "text": "KSITE - Update PageHero.svelte for Video Component",
-    "description": "Reference Come Back Clean\n\n```\n        {#if hero === 'leadform'}\n          <LeadForm />\n        {:else if $page.hero_video}\n          <lite-youtube posterloading=\"eager\" videoid={$page.hero_video}\n          ></lite-youtube>\n        {:else}\n          <Image source={$page.hero_image ?? $page.image} loading=\"eager\" />\n        {/if}\n```",
+    "title": "Add \"addedAt\" date",
+    "description": "",
+    "addedDate": "6/15/2025, 9:34:25 AM",
+    "completed": true,
+    "completedDate": "2025-06-15T16:42:14.280Z"
+  },
+  {
+    "title": "Add tags",
+    "description": "Bug fix, maintenance, etc...",
+    "addedDate": "6/15/2025, 9:40:14 AM",
     "completed": false
   }
 ]

@@ -16,7 +16,10 @@
   --color-green-900: #14532d;
   --color-red-600: #dc2626;
   --color-red-700: #b91c1c;
+  --color-dark: #282a36;
+  --color-darker: #13151c;
   font-size: 1.25rem;
+  --font-size-sm: 0.75rem;
   --rounding-sm: 0.25rem;
   --rounding: 0.375rem;
   --rounding-md: 0.5rem;
@@ -27,8 +30,8 @@ body {
   margin: 0;
   padding: 3rem;
   font-family: system-ui, sans-serif;
-  background-color: #282a36;
-  color: #333;
+  background-color: var(--color-dark);
+  color: var(--color-dark);
   line-height: 1.5;
   display: grid;
   gap: 4rem;
@@ -79,11 +82,11 @@ h1 {
   color: white;
   text-align: center;
   font-weight: 900;
-  font-size: calc(100vw / 25);
+  font-size: calc(100vw / 15);
 }
 
 .btn {
-  font-size: 0.75rem; /* text-xl */
+  font-size: 0.75rem;
   font-weight: 800;
   padding: 0.5rem 1rem;
   text-transform: uppercase;
@@ -113,6 +116,7 @@ h1 {
   font-size: 1.75rem;
   font-weight: 800;
   display: block;
+  border-radius: var(--rounding-sm);
 }
 .todo-desc {
   font-size: 1rem;
@@ -129,19 +133,6 @@ h1 {
   display: grid;
   gap: 0.25rem;
   position: relative;
-}
-.todo-item.completed {
-  background-color: var(--color-green-200);
-  color: var(--color-green-900);
-}
-.todo-item.completed:after {
-  content: '\2705';
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-.todo-item.completed .todo-desc {
-  display: none;
 }
 
 .task-list {
@@ -171,5 +162,64 @@ h1 {
 .todo-control-buttons {
   display: flex;
   gap: 0.25rem;
-  justify-content: end;
+}
+.todo-control-buttons * {
+  height: max-content;
+}
+
+.added-date {
+  margin-right: auto;
+  text-transform: uppercase;
+  font-size: var(--font-size-sm);
+  color: var(--color-pink-dark);
+}
+.added-date:before {
+  content: 'ADDED: ';
+  font-weight: 800;
+}
+.completed-date {
+  text-transform: uppercase;
+  font-size: var(--font-size-sm);
+  color: var(--color-pink-dark);
+}
+.completed-date:before {
+  content: 'COMPLETED: ';
+  font-weight: 800;
+}
+
+.todo-controls {
+  display: flex;
+  place-items: end;
+  justify-content: space-between;
+}
+
+/* START completed styles */
+.todo-item.completed {
+  background-color: var(--color-green-200);
+  color: var(--color-green-900);
+}
+.todo-item.completed .added-date,
+.todo-item.completed .completed-date {
+  color: var(--color-green-900);
+}
+.todo-item.completed .todo-title:after {
+  content: ' \2705';
+}
+.todo-item.completed .todo-desc {
+  display: none;
+}
+.todo-item.completed .todo-btn-complete {
+  background-color: var(--color-dark);
+}
+.todo-item.completed .todo-btn-complete:hover {
+  background-color: var(--color-darker);
+}
+/* END completed styles */
+
+.todo-dates {
+  display: flex;
+  flex-direction: column;
+}
+.todo-dates * {
+  line-height: 0;
 }
