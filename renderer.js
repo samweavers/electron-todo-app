@@ -4,6 +4,14 @@ let tasks = []
 
 window.addEventListener('DOMContentLoaded', init)
 
+document.addEventListener('click', (event) => {
+  const target = event.target.closest('a[href]')
+  if (target && target.href.startsWith('http')) {
+    event.preventDefault()
+    window.electronAPI.openExternal(target.href)
+  }
+})
+
 async function init() {
   try {
     tasks = (await window.electronAPI.loadTasks()) || []
@@ -22,6 +30,7 @@ function updateTaskList() {
     const section = document.createElement('section')
     const titleEl = document.createElement('span')
     const descEl = document.createElement('span')
+    const linkEl = document.createElement('a')
     const addedDateEl = document.createElement('p')
     const completedDateEl = document.createElement('p')
     const taskComplete = document.createElement('button')
@@ -33,6 +42,7 @@ function updateTaskList() {
     // Content
     titleEl.textContent = task.title
     descEl.textContent = task.description || 'Add details'
+    linkEl.innerHTML = `<img src="bc-icon.png" >`
     addedDateEl.textContent = new Date(task.addedDate).toLocaleString()
     completedDateEl.textContent = new Date(task.completedDate).toLocaleString()
     taskComplete.textContent = 'Complete'
@@ -42,6 +52,7 @@ function updateTaskList() {
     section.classList.add('todo-item')
     titleEl.classList.add('todo-title')
     descEl.classList.add('todo-desc')
+    linkEl.classList.add('todo-link')
     taskComplete.classList.add('btn', 'todo-btn-complete')
     addedDateEl.classList.add('added-date')
     completedDateEl.classList.add('completed-date')
@@ -53,6 +64,7 @@ function updateTaskList() {
     // Attributes
     titleEl.contentEditable = 'true'
     descEl.contentEditable = 'true'
+    linkEl.href = task.link
 
     // Save edits
     titleEl.addEventListener('blur', () => {
@@ -79,6 +91,9 @@ function updateTaskList() {
     taskDelete.onclick = () => removeTask(index)
 
     // Append controls
+    if (task.link) {
+      controlBtns.appendChild(linkEl)
+    }
     controlBtns.appendChild(taskComplete)
     controlBtns.appendChild(taskDelete)
     taskControls.appendChild(todoDates)
@@ -95,18 +110,22 @@ function updateTaskList() {
 function addTask() {
   const titleInput = document.getElementById('taskTitleInput')
   const descInput = document.getElementById('taskDescInput')
+  const linkInput = document.getElementById('taskLinkInput')
   const taskTitle = titleInput.value.trim()
   const taskDesc = descInput.value.trim()
+  const taskLink = linkInput.value.trim() 
 
   if (taskTitle) {
     tasks.push({
       title: taskTitle,
       description: taskDesc,
+      link: taskLink,
       addedDate: new Date().toLocaleString(),
       completed: false
     })
     titleInput.value = ''
     descInput.value = ''
+    linkInput.value = ''
     window.electronAPI.saveTasks(tasks)
     updateTaskList()
   }

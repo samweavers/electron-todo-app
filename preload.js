@@ -1,5 +1,5 @@
 // preload.js
-const { contextBridge } = require('electron')
+const { contextBridge, shell } = require('electron')
 const fs = require('fs').promises // Use promises for async operations
 const path = require('path')
 
@@ -31,7 +31,8 @@ async function loadTasks() {
 
 contextBridge.exposeInMainWorld('electronAPI', {
   saveTasks,
-  loadTasks
+  loadTasks,
+  openExternal: (url) => shell.openExternal(url)
 })
 
 console.log('Preload script loaded')
