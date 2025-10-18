@@ -1,5 +1,6 @@
 {
   "name": "electron-todo-app",
+  "productName": "Tick",
   "version": "1.0.0",
   "description": "A simple to-do list app using Electron",
   "main": "main.js",

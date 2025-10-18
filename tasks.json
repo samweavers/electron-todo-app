@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "title": "MT - Change out the reports and dashboard icon",
+    "description": "The projector looks so weird",
+    "link": "",
+    "addedDate": "10/7/2025, 12:31:11 PM",
+    "completed": false,
+    "current": false
+  },
+  {
+    "title": "2GC - Create deep cleaning LP",
+    "description": "Add details",
+    "link": "https://3.basecamp.com/5483754/buckets/41015162/todos/9165161600#__recording_9165162507",
+    "addedDate": "10/10/2025, 3:17:24 PM",
+    "completed": false,
+    "current": false
+  },
+  {
+    "title": "TADA - Clean up task urgency style class variables",
+    "description": "Use {task.urgency} class and handle at bottom of file",
+    "link": "",
+    "addedDate": "10/14/2025, 12:57:42 PM",
+    "completed": false,
+    "current": false
+  },
+  {
+    "title": "ELITE - Grab SA form embeds",
+    "description": "",
+    "link": "",
+    "addedDate": "10/17/2025, 11:04:34 AM",
+    "completed": true,
+    "current": false,
+    "completedDate": "2025-10-17T22:42:17.733Z"
+  }
+]

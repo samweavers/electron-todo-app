@@ -82,7 +82,7 @@ h1 {
   color: white;
   text-align: center;
   font-weight: 900;
-  font-size: calc(100vw / 15);
+  font-size: calc(100vw / 25);
 }
 
 .btn {
@@ -161,6 +161,7 @@ h1 {
 
 .todo-control-buttons {
   display: flex;
+  align-items: center;
   gap: 0.25rem;
 }
 .todo-control-buttons * {
@@ -226,11 +227,19 @@ h1 {
 }
 
 .todo-link {
+  margin-right: 5px;
+  display: flex;
   &:focus {
     box-shadow: none;
   }
   img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
+}
+
+.todo-item.current {
+  margin-bottom: 3rem;
+  box-shadow: var(--color-pink-light) 0px 0px 80px 0px;
+  background: linear-gradient(45deg, white 40%, var(--color-pink-light)) ;
 }
